@@ -1,0 +1,9 @@
+﻿@model SocialNetwork.Core.Application.ViewModel.Post.SavePostViewModel;
+
+<form asp-action="Create" asp-controller="Home" method="post">
+    <div class="mb-3">
+        <label asp-for="Content" class="form-label">Contenido: </label>
+        <textarea asp-for="Content" class="form-control" rows="4"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success float-end">Guardar</button>
+</form>

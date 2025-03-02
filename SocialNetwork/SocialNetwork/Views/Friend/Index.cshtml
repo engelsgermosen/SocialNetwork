@@ -1,0 +1,110 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var amigos = ViewBag.Friends as List<SocialNetwork.Core.Application.ViewModel.Friend.FriendViewModel>;
+    var guardarData = ViewBag.AddFriend as SocialNetwork.Core.Application.ViewModel.Friend.SaveFriendViewModel;
+}
+@using SocialNetwork.Core.Application.ViewModel.Post;
+@model List<PostViewModel>;
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-4 offset-md-8">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFriend">
+                agregar amigo
+            </button>
+            <div class="modal fade" id="modalFriend" tabindex="-1" aria-labelledby="modalLabel1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel1">Formulario 1</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            @Html.Partial("_FormularioFriend", guardarData)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mp-3">
+        <div class="col-12 col-lg-10 mx-auto">
+            <div class="row">
+                <div class="col-9">
+                    @if(Model.Count > 0 && Model != null)
+                    {
+                        @foreach (var post in Model)
+                        {
+                            <div class="card">
+                                <div class="card-body">
+                                    @if (!string.IsNullOrWhiteSpace(post.ImagePath))
+                                    {
+                                        <img class="img-fluid" width="50" src="@post.ImagePath" alt="@post.Content" />
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(post.VideoUrl))
+                                    {
+                                        <iframe width="560" height="315" src=@($"https://www.youtube.com/embed/{post.VideoUrl}") title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(post.Content))
+                                    {
+                                        <p>@post.Content</p>
+                                    }
+
+                                    <div class="">
+                                        @foreach (var commets in post.Comments)
+                                        {
+                                            <div>
+                                                <p> @commets.Message</p>
+
+                                            </div>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="col-3 d-flex align-items-center flex-column gap-3">
+                    @if (amigos?.Count > 0 || amigos != null)
+                    {
+                        @foreach (var i in amigos)
+                        {
+                            <div class="articulos d-flex gap-2 bg-light rounded-3">
+                                <div class="w-75 d-flex flex-row gap-2">
+                                    <div class="w-50 d-flex justify-content-center align-items-center">
+                                        <img src="@i.ImagePath" class="rounded-circle" width="70" height="70" />
+                                    </div>
+                                    <div class="w-50 d-flex justify-content-center align-items-center flex-column">
+                                        <h6>@i.Name @i.Lastname</h6>
+                                        <span class="align-self-start">@i.Username</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="w-25 d-flex align-items-center justify-content-center">
+                                    <a asp-action="Delete" asp-controller="Friend" asp-route-friendId="@i.Id" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    
+
+   
+</div>
+
+<style>
+    .articulos{
+        width:350px;
+    }
+</style>

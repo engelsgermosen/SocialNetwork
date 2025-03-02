@@ -1,0 +1,14 @@
+﻿@model SocialNetwork.Core.Application.ViewModel.Comments.SaveCommentViewModel;
+
+@{
+    var data = ViewData["brega"];
+}
+
+<form asp-action="Create" asp-controller="Home" method="post">
+    <p>@data</p>
+    <div class="mb-3">
+        <label asp-for="Message" class="form-label">Comentario: </label>
+        <input asp-for="Message" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>

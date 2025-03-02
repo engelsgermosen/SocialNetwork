@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using SocialNetwork.Core.Application.ViewModel.User;
+@model SaveUserViewModel;
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6 mx-auto mt-5">
+            <h2 class="text-center">Registrarse</h2>
+            @Html.ValidationSummary(false,"",new {@class="text-danger"})
+            <form method="post" asp-controller="User" asp-action="Register" enctype="multipart/form-data">
+                <div class="mb-2">
+                    <label asp-for="Name" class="form-label">Nombre:</label>
+                    <input asp-for="Name" class="form-control" />
+                </div>
+                <div class="mb-2">
+                    <label asp-for="Lastname" class="form-label">Apellido:</label>
+                    <input asp-for="Lastname" class="form-control" />
+                </div>
+                <div class="mb-2">
+                    <label asp-for="Phone" class="form-label">Telefono:</label>
+                    <input asp-for="Phone" class="form-control" />
+                </div>
+                <div class="mb-2">
+                    <label asp-for="Email" class="form-label">Correo electronico:</label>
+                    <input asp-for="Email" class="form-control" />
+                </div>
+                <div class="mb-2">
+                    <label asp-for="Image" class="form-label">Foto de perfil:</label>
+                    <input required asp-for="Image" class="form-control" />
+                </div>
+                <div class="mb-2">
+                    <label asp-for="Username" class="form-label">Nombre de usuario:</label>
+                    <input asp-for="Username" class="form-control" />
+                </div>
+                <div class="mb-2">
+                    <label asp-for="Password" class="form-label">Contraseña:</label>
+                    <input asp-for="Password" class="form-control" />
+                </div>
+                <div class="mb-2">
+                    <label asp-for="ConfirmPassword" class="form-label">Confirmar contraseña:</label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                </div>
+                <div class="btn-group">
+                    <a class="btn btn-warning" asp-action="Index" asp-controller="User">Volver atras</a>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

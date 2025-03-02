@@ -1,0 +1,17 @@
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\bin\Debug\net8.0\SocialNetwork.Infraestructure.Persistence.deps.json
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\bin\Debug\net8.0\SocialNetwork.Infraestructure.Persistence.dll
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\bin\Debug\net8.0\SocialNetwork.Infraestructure.Persistence.pdb
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\bin\Debug\net8.0\SocialNetwork.Core.Application.dll
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\bin\Debug\net8.0\SocialNetwork.Core.Domain.dll
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\bin\Debug\net8.0\SocialNetwork.Core.Application.pdb
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\bin\Debug\net8.0\SocialNetwork.Core.Domain.pdb
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\obj\Debug\net8.0\SocialNetwork.Infraestructure.Persistence.csproj.AssemblyReference.cache
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\obj\Debug\net8.0\SocialNetwork.Infraestructure.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\obj\Debug\net8.0\SocialNetwork.Infraestructure.Persistence.AssemblyInfoInputs.cache
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\obj\Debug\net8.0\SocialNetwork.Infraestructure.Persistence.AssemblyInfo.cs
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\obj\Debug\net8.0\SocialNetwork.Infraestructure.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\obj\Debug\net8.0\SocialNe.8A62130D.Up2Date
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\obj\Debug\net8.0\SocialNetwork.Infraestructure.Persistence.dll
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\obj\Debug\net8.0\refint\SocialNetwork.Infraestructure.Persistence.dll
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\obj\Debug\net8.0\SocialNetwork.Infraestructure.Persistence.pdb
+C:\Users\mreng\OneDrive\Escritorio\PracticasP3\SocialNetwork\SocialNetwork.Infraestructe.Persistence\obj\Debug\net8.0\ref\SocialNetwork.Infraestructure.Persistence.dll

@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using SocialNetwork.Core.Application.ViewModel.User;
+@model ResetPasswordViewModel
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 mx-auto mt-5">
+            <form method="post" asp-controller="User" asp-action="Restore">
+                <h2 class="text-center">Restablacer contraseña</h2>
+                @Html.ValidationSummary(false,"",new {@class="text-danger"})
+                <div class="mb-2">
+                    <label asp-for="Username" class="form-label">Nombre de usuario: </label>
+                    <input asp-for="Username" class="form-control"/>
+                </div>
+                <button class="btn btn-primary float-end" type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>

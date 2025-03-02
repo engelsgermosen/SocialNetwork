@@ -1,0 +1,9 @@
+﻿@model SocialNetwork.Core.Application.ViewModel.Post.SavePostViewModel;
+
+<form asp-action="Create" asp-controller="Home" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="Image" class="form-label">Imagen de la publicacion: </label>
+        <input asp-for="Image"  class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>

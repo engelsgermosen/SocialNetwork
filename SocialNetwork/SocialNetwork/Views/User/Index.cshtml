@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using SocialNetwork.Core.Application.ViewModel.User;
+@model LoginViewModel;
+
+
+<div class="container-fluid">
+    @if(!string.IsNullOrWhiteSpace(ViewBag.Message))
+    {
+        <div class="row">
+            <div class="col-12 col-md-6 mx-auto alert text-dark @ViewBag.MessageType" role="alert">
+                @ViewBag.Message
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="mt-5 col-12 col-md-6 col-lg-4 mx-auto">
+            <h2 class="text-center">LOGIN</h2>
+            @Html.ValidationSummary(false,"",new {@class="text-danger"})
+            <form class="" asp-action="Index" asp-controller="User" method="post">
+                <div class="mb-2">
+                    <label asp-for="Username" class="form-label">Usuario:</label>
+                    <input asp-for="Username" class="form-control" />
+                </div>
+                <div class="mb-2">
+                    <label asp-for="Password" class="form-label">Contraseña:</label>
+                    <input asp-for="Password" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary">Ingregar</button>
+            </form>
+        </div>
+    </div>
+</div>

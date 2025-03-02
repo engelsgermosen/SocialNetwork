@@ -1,0 +1,9 @@
+﻿@model SocialNetwork.Core.Application.ViewModel.Friend.SaveFriendViewModel;
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+<form asp-action="CreateFriend" asp-controller="Friend" method="post">
+    <div class="mb-3">
+        <label asp-for="Username" class="form-label">Nombre de usuario: </label>
+        <textarea asp-for="Username" class="form-control" rows="4"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success float-end">Guardar</button>
+</form>
