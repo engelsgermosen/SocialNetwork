@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VMX7GBPw5+Y=",
+  "dgSpecHash": "x6e0cnNawI4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\mreng\\OneDrive\\Escritorio\\PracticasP3\\SocialNetwork\\SocialNetwork.Infraestructe.Persistence\\SocialNetwork.Infraestructure.Persistence.csproj",
+  "projectFilePath": "C:\\Users\\mreng\\OneDrive\\Escritorio\\PracticasP3\\SocialNetwork\\SocialNetwork\\SocialNetwork.Infraestructe.Persistence\\SocialNetwork.Infraestructure.Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mreng\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\mreng\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

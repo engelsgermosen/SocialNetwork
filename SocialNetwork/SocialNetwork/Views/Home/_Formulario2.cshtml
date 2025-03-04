@@ -3,7 +3,11 @@
 <form asp-action="Create" asp-controller="Home" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label asp-for="Image" class="form-label">Imagen de la publicacion: </label>
-        <input asp-for="Image"  class="form-control">
+        <input required asp-for="Image"  class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Content" class="form-label">Descripcion de la publicacion: </label>
+        <input asp-for="Content" class="form-control">
     </div>
     <button type="submit" class="btn btn-success">Guardar</button>
 </form>

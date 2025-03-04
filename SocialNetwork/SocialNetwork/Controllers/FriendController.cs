@@ -18,7 +18,7 @@ namespace SocialNetwork.Controllers
             this.postService = postService;
             this.validateUserSession = validateUserSession;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? message = null, string? messageType=null)
         {
             if(!validateUserSession.HasUser())
             {
@@ -26,6 +26,8 @@ namespace SocialNetwork.Controllers
             }
             ViewBag.AddFriend = new SaveFriendViewModel();
             ViewBag.Friends = await friendService.GetAllWithIncludes();
+            ViewBag.Message = message;
+            ViewBag.MessageType = messageType;
             return View(await postService.GetAllFriendsPostViewModel());
         }
 
@@ -38,20 +40,16 @@ namespace SocialNetwork.Controllers
             ViewBag.AddFriend = new SaveFriendViewModel();
             ViewBag.Friends = await friendService.GetAllWithIncludes();
 
-            if (!ModelState.IsValid)
-            {
-                return View("_FormularioFriend",vm);
-            }
-
-
-    
-
             var response = await friendService.CreateAsync(vm);
 
             if(response == null)
             {
 
-                ModelState.AddModelError("user exist", "Ese usuario no existe");
+                return RedirectToRoute(new { controller = "Friend", action = "Index", message = "No existe un usuario con ese nombre de usuario", messageType = "alert-danger" });
+            }
+            else if(response.UserId == -1)
+            {
+                return RedirectToRoute(new { controller = "Friend", action = "Index", message = "No te puedes agregar como amigo a ti mismo", messageType = "alert-danger" });
             }
 
             return RedirectToAction("Index");

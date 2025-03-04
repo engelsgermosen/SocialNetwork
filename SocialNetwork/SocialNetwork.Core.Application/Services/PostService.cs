@@ -34,11 +34,11 @@ namespace SocialNetwork.Core.Application.Services
             this.friendService = friendService;
         }
 
-        public async Task<List<PostViewModel>> GetAllWithIncludesAsync()
+        public async Task<List<PostViewModel>> GetAllNewPostViewModels()
         {
-            var response = await _postRespository.GetAllWithIncludesAsync(new List<string> { "Comments", "User" });
+            var posts = await _postRespository.GetPostAsync();
 
-            return  response
+            return posts
                 .Where(x => x.UserId == userVM.Id).OrderByDescending(x => x.Date)
                 .Select(x => new PostViewModel
                 {
@@ -51,7 +51,7 @@ namespace SocialNetwork.Core.Application.Services
                     UserId = x.UserId,
                     UserImagePath = x?.User?.ImagePath,
                     Username = x?.User?.Username,
-                    Comments = x?.Comments?.Select(n => new CommentViewModel 
+                    Comments = x?.Comments?.Select(n => new CommentViewModel
                     {
                         Id = n.Id,
                         Message = n.Message,
@@ -60,7 +60,7 @@ namespace SocialNetwork.Core.Application.Services
                         Created = n.Created,
                         UserId = n?.UserId,
                         ParentCommentId = n?.ParentCommentId,
-                        ParentComment = x?.Comments?.Where(c => c.ParentCommentId == n?.Id)
+                        Replies = x?.Comments?.Where(c => c.ParentCommentId == n?.Id)
                         .Select(coc => new CommentViewModel
                         {
                             Id = coc.Id,
@@ -75,8 +75,6 @@ namespace SocialNetwork.Core.Application.Services
                     }).ToList(),
                 })
                 .ToList();
-
-            
         }
 
         public override async Task<SavePostViewModel> CreateAsync(SavePostViewModel vm)
@@ -87,10 +85,9 @@ namespace SocialNetwork.Core.Application.Services
 
         public async Task<List<PostViewModel>> GetAllFriendsPostViewModel()
         {
-            var response = await _postRespository.GetAllWithIncludesAsync(new List<string> { "Comments", "User" });
+            var response = await _postRespository.GetPostAsync();
             var amigos = await friendService.GetAllWithIncludes();
             var result = response
-                //.Where(x => x.UserId == (amigos.FirstOrDefault(a => a.Id == x.UserId))?.Id)
                 .Where(x => amigos.Any(a => a.Id == x.UserId))
                 .OrderByDescending(x => x.Date)
                 .ToList();
@@ -115,7 +112,7 @@ namespace SocialNetwork.Core.Application.Services
                         Created = n.Created,
                         UserId = n?.UserId,
                         ParentCommentId = n?.ParentCommentId,
-                        ParentComment = x?.Comments?.Where(c => c.ParentCommentId == n?.Id)
+                        Replies = x?.Comments?.Where(c => c.ParentCommentId == n?.Id)
                         .Select(coc => new CommentViewModel
                         {
                             Id = coc.Id,

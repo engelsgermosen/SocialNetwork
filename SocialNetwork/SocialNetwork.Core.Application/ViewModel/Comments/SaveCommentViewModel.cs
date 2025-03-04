@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SocialNetwork.Core.Application.ViewModel.Comments
+﻿namespace SocialNetwork.Core.Application.ViewModel.Comments
 {
     public class SaveCommentViewModel
     {
@@ -13,10 +7,6 @@ namespace SocialNetwork.Core.Application.ViewModel.Comments
         public int? UserId { get; set; }
         public int PostId { get; set; }
         public int? ParentCommentId { get; set; }
-        //public List<int>? Publication { get; set; }
-        //public List<int>? Children { get; set; }
-
         public DateTime Created { get; set; } = DateTime.Now;
-
     }
 }

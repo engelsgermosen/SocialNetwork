@@ -1,5 +1,4 @@
 ﻿using SocialNetwork.Core.Application.ViewModel.Comments;
-using SocialNetwork.Core.Domain.Entities;
 
 namespace SocialNetwork.Core.Application.ViewModel.Post
 {
@@ -19,7 +18,6 @@ namespace SocialNetwork.Core.Application.ViewModel.Post
         public DateTime Date { get; set; }
 
         public ICollection<CommentViewModel>? Comments { get; set; }
-        //public ICollection<CommentViewModel>? Replies { get; set; }
 
         public int UserId { get; set; }
     }

@@ -60,7 +60,7 @@ namespace SocialNetwork.Core.Application.Mapping
 
 
             CreateMap<Comments, CommentViewModel>()
-                .ForMember(x => x.Publication, opt => opt.Ignore())
+                //.ForMember(x => x., opt => opt.Ignore())
                 .ReverseMap()
                 .ForMember(x => x.Post, opt => opt.Ignore())
                 .ForMember(x => x.User, opt => opt.Ignore());

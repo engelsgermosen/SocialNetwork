@@ -81,21 +81,28 @@ namespace SocialNetwork.Controllers
 
             var response = await userService.ResetPassword(model.Username);
 
-            if(response != null)
+            try
             {
-                await emailService.SendAsync(new EmailRequest
+                if (response != null)
                 {
-                    To = response.Email,
-                    Subject = "Su nueva contraseña!!!",
-                    Body = $"<h1>Nueva contraseña de su red social</h1> <p>CONTRASEÑA: {response.Password}</p>"
-                });
-                return RedirectToRoute(new { controller = "User", action = "Index", message = "Se le envio su nueva contraseña a su correo", messageType = "alert-success" });
+                    await emailService.SendAsync(new EmailRequest
+                    {
+                        To = response.Email,
+                        Subject = "Su nueva contraseña!!!",
+                        Body = $"<h1>Nueva contraseña de su red social</h1> <p>CONTRASEÑA: {response.Password}</p>"
+                    });
+                    return RedirectToRoute(new { controller = "User", action = "Index", message = "Se le envio su nueva contraseña a su correo", messageType = "alert-success" });
+                }
+                else
+                {
+                    ModelState.AddModelError("user", "Ese nombre de usuario no existe");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ModelState.AddModelError("user", "Ese nombre de usuario no existe");
-            }
+                ModelState.AddModelError("ex", ex.Message);
 
+            }
 
             return View(model);
         }
@@ -117,29 +124,46 @@ namespace SocialNetwork.Controllers
                 return View(userVm);
             }
 
+            var phoneValid = ValidatePhone.NumeroPermitido(userVm.Phone);
+
+            if(!phoneValid)
+            {
+                ModelState.AddModelError("phone formar", "El numero no tiene el formato de RD");
+                return View(userVm);
+            }
+
             try
             {
                 userVm.TokenActive = Guid.NewGuid().ToString();
                 var response  = await userService.CreateAsync(userVm);
                 response.ImagePath = UploadFile(userVm.Image, response.Id);
+                response.Password = "";
                 await userService.UpdateAsync(response,response.Id);
                 string urlActivacion = $"https://localhost:7152/User/ActivarCuenta?token={userVm.TokenActive}";
-                await emailService.SendAsync(new EmailRequest
+                try
                 {
-                    To= response.Email,
-                    Subject="Activa tu cuenta!",
-                    Body= $"<p>Haz clic en el siguiente enlace para activar tu cuenta:</p> <a href='{urlActivacion}'>Activar Cuenta</a>"
-                });
-                return RedirectToAction("Index");
+                    await emailService.SendAsync(new EmailRequest
+                    {
+                        To = response.Email,
+                        Subject = "Activa tu cuenta!",
+                        Body = $"<p>Haz clic en el siguiente enlace para activar tu cuenta:</p> <a href='{urlActivacion}'>Activar Cuenta</a>"
+                    });
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("ex", ex.Message);
+                }
+
+                return RedirectToRoute(new {controller="User",action="Index",message="Se envio el correo de activacion a su correo", messageType="alert-success" });
             }
             catch (DbUpdateException dbEx)
             {
 
-                if (dbEx.InnerException?.Message.Contains("IX_Users_Email") == true)
+                if (dbEx.InnerException?.Message.Contains("IX_Usuarios_Email") == true)
                 {
                     ModelState.AddModelError("Email", "El correo ya está registrado. Por favor, use otro.");
                 }
-                else if (dbEx.InnerException?.Message.Contains("IX_Users_Username") == true)
+                else if (dbEx.InnerException?.Message.Contains("IX_Usuarios_Username") == true)
                 {
                     ModelState.AddModelError("Username", "El nombre de usuario ya está en uso. Elija otro.");
                 }

@@ -6,11 +6,6 @@ using SocialNetwork.Core.Application.Interfaces.Services;
 using SocialNetwork.Core.Application.ViewModel.Friend;
 using SocialNetwork.Core.Application.ViewModel.User;
 using SocialNetwork.Core.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialNetwork.Core.Application.Services
 {
@@ -34,6 +29,9 @@ namespace SocialNetwork.Core.Application.Services
         public override async Task<SaveFriendViewModel> CreateAsync(SaveFriendViewModel vm)
         {
             var amigo = await userService.GetByUsername(vm.Username);
+
+            if (amigo.Id == userViewModel.Id)
+                return new SaveFriendViewModel { UserId= -1};
 
             if (amigo == null)
                 return null;

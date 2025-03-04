@@ -7,10 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
-builder.Services.AddPersistenceLayer(builder.Configuration);
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddApplicationLayer();
+builder.Services.AddPersistenceLayer(builder.Configuration);
 builder.Services.AddSharedLayer(builder.Configuration);
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<ValidateUserSession, ValidateUserSession>();
 
 

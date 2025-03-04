@@ -17,6 +17,12 @@ namespace SocialNetwork.Infraestructure.Persistence.Contexts
         {
             base.OnModelCreating(modelBuilder);
 
+            #region tables
+            modelBuilder.Entity<User>().ToTable("Usuarios");
+            modelBuilder.Entity<Friend>().ToTable("Amigos");
+            modelBuilder.Entity<Post>().ToTable("Publicaciones");
+            modelBuilder.Entity<Comments>().ToTable("Comentarios");
+            #endregion
 
             #region PrimaryKeys
 
@@ -26,7 +32,6 @@ namespace SocialNetwork.Infraestructure.Persistence.Contexts
             modelBuilder.Entity<Comments>().HasKey(x => x.Id);
 
             #endregion
-
 
 
             #region Configuration

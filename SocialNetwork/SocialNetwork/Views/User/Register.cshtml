@@ -2,13 +2,14 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Registro de usuarios";
 }
 @using SocialNetwork.Core.Application.ViewModel.User;
 @model SaveUserViewModel;
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 col-md-6 mx-auto mt-5">
+        <div class="col-12 col-md-6 mx-auto mt-5 mb-3">
             <h2 class="text-center">Registrarse</h2>
             @Html.ValidationSummary(false,"",new {@class="text-danger"})
             <form method="post" asp-controller="User" asp-action="Register" enctype="multipart/form-data">
@@ -44,9 +45,9 @@
                     <label asp-for="ConfirmPassword" class="form-label">Confirmar contraseña:</label>
                     <input asp-for="ConfirmPassword" class="form-control" />
                 </div>
-                <div class="btn-group">
+                <div class="btn-group mt-2 float-end">
                     <a class="btn btn-warning" asp-action="Index" asp-controller="User">Volver atras</a>
-                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <button type="submit" class="btn btn-primary float-end">Crear</button>
                 </div>
             </form>
         </div>

@@ -2,6 +2,7 @@
 using SocialNetwork.Core.Application.Helpers;
 using SocialNetwork.Core.Application.Interfaces.Services;
 using SocialNetwork.Core.Application.ViewModel.User;
+using SocialNetwork.Core.Domain.Entities;
 
 namespace SocialNetwork.Controllers
 {
@@ -45,6 +46,14 @@ namespace SocialNetwork.Controllers
 
             if (!ModelState.IsValid)
             {
+                return View(vm);
+            }
+
+            var phoneValid = ValidatePhone.NumeroPermitido(vm.Phone);
+
+            if (!phoneValid)
+            {
+                ModelState.AddModelError("phone formar", "El numero no tiene el formato de RD");
                 return View(vm);
             }
 

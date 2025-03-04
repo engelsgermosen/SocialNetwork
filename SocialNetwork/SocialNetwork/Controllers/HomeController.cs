@@ -1,10 +1,10 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using SocialNetwork.Core.Application.Enums;
 using SocialNetwork.Core.Application.Helpers;
 using SocialNetwork.Core.Application.Interfaces.Services;
 using SocialNetwork.Core.Application.ViewModel.Comments;
 using SocialNetwork.Core.Application.ViewModel.Post;
-using SocialNetwork.Models;
+using SocialNetwork.Core.Application.ViewModel.User;
 
 namespace SocialNetwork.Controllers
 {
@@ -13,12 +13,16 @@ namespace SocialNetwork.Controllers
         private readonly IPostService _postService;
         private readonly ICommentService _commentService;
         private readonly ValidateUserSession validateUserSession;
+        private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly UserViewModel userViewModel;
        
-        public HomeController(IPostService postService, ICommentService commentService, ValidateUserSession validateUserSession)
+        public HomeController(IPostService postService, ICommentService commentService, ValidateUserSession validateUserSession, IHttpContextAccessor httpContextAccessor)
         {
             _postService = postService;
             _commentService = commentService;
             this.validateUserSession = validateUserSession;
+            this.httpContextAccessor = httpContextAccessor;
+            userViewModel = httpContextAccessor.HttpContext.Session.Get<UserViewModel>("user");
         }
 
         public async Task<IActionResult> Index()
@@ -27,10 +31,9 @@ namespace SocialNetwork.Controllers
             {
                 return RedirectToRoute(new { controller = "User", action = "Index", message = "Zona restringida, inicia sesion primero", messageType = "alert-danger" });
             }
-            ViewBag.Hola = new { data = "Si llega" };
             ViewBag.Guardar = new SavePostViewModel();
             ViewBag.Commentarios = new SaveCommentViewModel();
-            var response = await _postService.GetAllWithIncludesAsync();
+            var response = await _postService.GetAllNewPostViewModels();
             return View(response);
         }
 
@@ -40,11 +43,6 @@ namespace SocialNetwork.Controllers
             if (!validateUserSession.HasUser())
             {
                 return RedirectToRoute(new { controller = "User", action = "Index", message = "Zona restringida, inicia sesion primero", messageType = "alert-danger" });
-            }
-            if (!string.IsNullOrWhiteSpace(vm.VideoUrl))
-            {
-                string[] video = vm.VideoUrl.Split('=');
-                vm.VideoUrl = video.LastOrDefault();
             }
 
             var response = await _postService.CreateAsync(vm);
@@ -59,13 +57,49 @@ namespace SocialNetwork.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateComments(string CommentText, int PostId,int? ParentCommentId)
+        public async Task<IActionResult> CreateComments(string CommentText, int PostId,int? ParentCommentId, int Type)
         {
             if (!validateUserSession.HasUser())
             {
                 return RedirectToRoute(new { controller = "User", action = "Index", message = "Zona restringida, inicia sesion primero", messageType = "alert-danger" });
             }
             await _commentService.CreateAsync(new SaveCommentViewModel { Message = CommentText,PostId=PostId,ParentCommentId= ParentCommentId });
+
+            if(Type == (int)CommentType.Post)
+            {
+                return RedirectToRoute(new { controller = "Home", action = "Index" });
+            }
+            else 
+            {
+                return RedirectToRoute(new {controller="Friend",action="Index" });
+            }
+        }
+
+        public async Task<IActionResult> DeletePost(int postId)
+        {
+            await _postService.DeleteAsync(postId);
+
+            string basePath = $"Images/Post/{userViewModel.Id}/{postId}";
+            string finalPath = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/{basePath}");
+
+            if(Directory.Exists(finalPath))
+            {
+                Directory.Delete(finalPath, true);
+            }
+
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Edit(int postId)
+        {
+
+            return View(await _postService.GetByIdSaveViewModel(postId));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(SavePostViewModel post)
+        {
+            post.ImagePath = UploadFile(post.Image,post.UserId, post.Id, true, post.ImagePath);
+            await _postService.UpdateAsync(post,post.Id);
 
             return RedirectToAction("Index");
         }

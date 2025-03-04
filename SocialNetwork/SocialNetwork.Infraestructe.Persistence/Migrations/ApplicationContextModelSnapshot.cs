@@ -54,7 +54,7 @@ namespace SocialNetwork.Infraestructure.Persistence.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comentarios", (string)null);
                 });
 
             modelBuilder.Entity("SocialNetwork.Core.Domain.Entities.Friend", b =>
@@ -80,7 +80,7 @@ namespace SocialNetwork.Infraestructure.Persistence.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Friends");
+                    b.ToTable("Amigos", (string)null);
                 });
 
             modelBuilder.Entity("SocialNetwork.Core.Domain.Entities.Post", b =>
@@ -110,7 +110,7 @@ namespace SocialNetwork.Infraestructure.Persistence.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Publicaciones", (string)null);
                 });
 
             modelBuilder.Entity("SocialNetwork.Core.Domain.Entities.User", b =>
@@ -162,7 +162,7 @@ namespace SocialNetwork.Infraestructure.Persistence.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("Users");
+                    b.ToTable("Usuarios", (string)null);
                 });
 
             modelBuilder.Entity("SocialNetwork.Core.Domain.Entities.Comments", b =>

@@ -1,0 +1,42 @@
+﻿@model SocialNetwork.Core.Application.ViewModel.Post.SavePostViewModel;
+
+@{
+    ViewData["Title"] = "Edicion de publicacion";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6 mx-auto mt-5">
+            <h4>Editando publicacion</h4>
+
+            <form asp-action="Edit" asp-controller="Home" method="post" enctype="multipart/form-data">
+                @if (Model.VideoUrl != null)
+                {
+
+                    <div class="mb-3">
+                        <label asp-for="VideoUrl" class="form-label">URL del video: </label>
+                        <input required asp-for="VideoUrl" class="form-control">
+                    </div>
+                }
+                else if(Model.ImagePath != null)
+                {
+                    <div class="mb-3">
+                        <label asp-for="Image" class="form-label">Foto de la publicacion: </label>
+                        <input asp-for="Image" class="form-control">
+                    </div>
+                }
+                <div class="mb-3">
+                    <label asp-for="Content" class="form-label">Descripcion de la publicacion: </label>
+                    <input asp-for="Content" class="form-control">
+                </div>
+                <input asp-for="Id" type="hidden" />
+                <input asp-for="UserId" type="hidden" />
+                <input asp-for="Date" type="hidden" />
+                <input asp-for="ImagePath" type="hidden" />
+                <button type="submit" class="btn btn-success float-end">Guardar</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+

@@ -4,11 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using SocialNetwork.Core.Application.Interfaces.Repositories;
 using SocialNetwork.Infraestructure.Persistence.Contexts;
 using SocialNetwork.Infraestructure.Persistence.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialNetwork.Infraestructure.Persistence
 {

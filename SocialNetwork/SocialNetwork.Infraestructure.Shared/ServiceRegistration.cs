@@ -3,11 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using SocialNetwork.Core.Application.Interfaces.Services;
 using SocialNetwork.Core.Domain.Settings;
 using SocialNetwork.Infraestructure.Shared.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialNetwork.Infraestructure.Shared
 {

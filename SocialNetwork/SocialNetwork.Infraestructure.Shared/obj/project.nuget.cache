@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z46AUNw8wAY=",
+  "dgSpecHash": "YsCQuk+KAjI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\mreng\\OneDrive\\Escritorio\\PracticasP3\\SocialNetwork\\SocialNetwork.Infraestructure.Shared\\SocialNetwork.Infraestructure.Shared.csproj",
+  "projectFilePath": "C:\\Users\\mreng\\OneDrive\\Escritorio\\PracticasP3\\SocialNetwork\\SocialNetwork\\SocialNetwork.Infraestructure.Shared\\SocialNetwork.Infraestructure.Shared.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mreng\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\mreng\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

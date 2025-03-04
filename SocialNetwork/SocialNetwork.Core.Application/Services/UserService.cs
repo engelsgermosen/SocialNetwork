@@ -6,11 +6,6 @@ using SocialNetwork.Core.Application.Interfaces.Repositories;
 using SocialNetwork.Core.Application.Interfaces.Services;
 using SocialNetwork.Core.Application.ViewModel.User;
 using SocialNetwork.Core.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialNetwork.Core.Application.Services
 {
@@ -34,11 +29,6 @@ namespace SocialNetwork.Core.Application.Services
         {
             var response = await _userRepository.GetByUsername(username);
             return _mapper.Map<UserViewModel>(response);
-        }
-
-        public override async Task<SaveUserViewModel> GetByIdSaveViewModel(int id)
-        {
-            return await base.GetByIdSaveViewModel(id);
         }
 
         public override async Task<SaveUserViewModel> UpdateAsync(SaveUserViewModel vm, int id)
